@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Reply;
 use App\Thread;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -13,12 +14,37 @@ class ThreadTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $thread;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->thread = factory(Thread::class)->create();
+    }
+
     /** @test */
     public function it_has_replies()
     {
-        $thread = factory(Thread::class)->create();
-        $replies = factory(Reply::class, 3)->create(['thread_id' => $thread->id]);
+        factory(Reply::class, 3)->create(['thread_id' => $this->thread->id]);
 
-        $this->assertInstanceOf(Collection::class, $thread->replies);
+        $this->assertInstanceOf(Collection::class, $this->thread->replies);
+    }
+
+    /** @test */
+    public function it_has_a_creator()
+    {
+        $this->assertInstanceOf(User::class, $this->thread->creator);
+    }
+
+    /** @test */
+    public function it_can_add_a_reply()
+    {
+        $this->thread->addReply([
+            'body' => 'Foobar',
+            'user_id' => 1
+        ]);
+
+        $this->assertCount(1, $this->thread->replies);
     }
 }
