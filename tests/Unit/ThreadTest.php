@@ -24,6 +24,14 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
+    public function it_can_make_a_sting_path()
+    {
+        $thread = create('App\Thread');
+
+        $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
+    }
+
+    /** @test */
     public function it_has_a_creator()
     {
         $this->assertInstanceOf(User::class, $this->thread->creator);

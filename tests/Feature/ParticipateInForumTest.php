@@ -13,7 +13,8 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function unauthenticated_user_cannot_participate_in_forum_threads()
     {
-        $this->post('threads/1/replies', [])
+
+        $this->post('threads/some-chanel/1/replies', [])
             ->assertStatus(302)
             ->assertRedirect('/login');
     }
@@ -22,7 +23,6 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function an_authenticated_user_may_participate_in_forum_threads()
     {
-
         $this->signIn();
 
         $thread = create('App\Thread');
