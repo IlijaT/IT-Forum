@@ -24,7 +24,23 @@
         @foreach ($thread->replies as $reply)
           @include('threads.reply')
         @endforeach
+      </div>
     </div>
-    </div>
+
+    @auth
+      <div class="row justify-content-center mb-2">
+        <div class="col-md-8">
+          <form action="{{ $thread->path() . '/replies'}}" method="post">
+            @csrf
+            <div class="form-group">
+              <textarea class="form-control" id="body" id="body" placeholder="Have something to say?" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post</button>
+          </form>
+        </div>
+      </div>
+    @else
+      <p class="text-center">Please <a href="{{ route('login') }}">sign in </a>to participate in this discusion</p>
+    @endauth
 </div>
 @endsection
