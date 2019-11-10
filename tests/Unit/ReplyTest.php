@@ -16,7 +16,7 @@ class ReplyTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $reply = factory(Reply::class)->create();
+        $reply = create(Reply::class);
 
         $this->assertInstanceOf(User::class, $reply->owner);
     }

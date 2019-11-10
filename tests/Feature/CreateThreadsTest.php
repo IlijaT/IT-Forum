@@ -14,7 +14,7 @@ class CreateThreadsTest extends TestCase
     public function a_guest_cannot_create_new__forum_thread()
     {
 
-        $thread = factory('App\Thread')->make();
+        $thread = make('App\Thread');
 
         $this->post('/threads', $thread->toArray())
             ->assertStatus(302)
@@ -26,9 +26,9 @@ class CreateThreadsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->actingAs(factory('App\User')->create());
+        $this->actingAs(create('App\User'));
 
-        $thread = factory('App\Thread')->make();
+        $thread = make('App\Thread');
 
         $this->post('/threads', $thread->toArray());
 
