@@ -14,6 +14,9 @@ class CreateThreadsTest extends TestCase
     public function a_guest_cannot_create_new__forum_thread()
     {
 
+        $this->get('/threads/create')
+            ->assertRedirect('/login');
+
         $thread = make('App\Thread');
 
         $this->post('/threads', $thread->toArray())
