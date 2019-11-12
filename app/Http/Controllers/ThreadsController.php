@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Channel;
-use App\Filters\ThreadFilters;
-use App\Thread;
 use App\User;
+use App\Thread;
+use App\ChannelW;
 use Illuminate\Http\Request;
+use App\Filters\ThreadFilters;
 
 class ThreadsController extends Controller
 {
@@ -48,7 +48,10 @@ class ThreadsController extends Controller
 
     public function show($channelId, Thread $thread)
     {
-        return view('threads.show', compact('thread'));
+        return view('threads.show', [
+            'thread' => $thread,
+            'replies' => $thread->replies()->paginate(10)
+        ]);
     }
 
     public function edit(Thread $thread)
