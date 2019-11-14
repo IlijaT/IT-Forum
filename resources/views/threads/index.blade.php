@@ -20,7 +20,6 @@
                             <a href="{{$thread->path()}}">{{ $thread->replies_count }} {{ Str::plural ('reply', $thread->replies_count) }}</a>
 
                         </div>
-                        
 
                         <div class="body"> {{ $thread->body }}</div>
 
