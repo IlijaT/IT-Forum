@@ -50,7 +50,7 @@ class ThreadsController extends Controller
         return redirect($thread->path());
     }
 
-    public function show($channelId, Thread $thread)
+    public function show($channel, Thread $thread)
     {
         return view('threads.show', [
             'thread' => $thread,
@@ -68,9 +68,12 @@ class ThreadsController extends Controller
         //
     }
 
-    public function destroy(Thread $thread)
+    public function destroy($channel, Thread $thread)
     {
-        //
+        $thread->replies()->delete();
+        $thread->delete();
+        return redirect('/threads');
+        return response([], 204);
     }
 
     protected function getThreads(Channel $channel, ThreadFilters $filters)

@@ -10,8 +10,20 @@
         <div class="col-md-8">
             <div class="card mb-2">
               <div class="card-header">
-                <a href="/profiles/{{$thread->creator->name}}"> {{ $thread->creator->name }}</a> posted:
-                {{$thread->title}}
+                <div class="d-flex align-items-center">
+                  <div  class="flex-fill">
+                      <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
+                      {{$thread->title}}
+                  </div>
+
+                    <form action="{{$thread->path()}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger">Delete Thread</button>
+
+                    </form>
+                </div>
+               
               </div>
 
                 <div class="card-body">

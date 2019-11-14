@@ -2,7 +2,7 @@
     <div class="card-header">
       <div class="d-flex align-items-center">
           <h5 class="flex-fill">
-            <a href="/profiles/{{$reply->owner->name}}">{{ $reply->owner->name }}</a>
+            <a href="{{ route('profile', [$reply->owner->name]) }}">{{ $reply->owner->name }}</a>
               said {{$reply->created_at->diffForHumans()}}...
           </h5>
 
