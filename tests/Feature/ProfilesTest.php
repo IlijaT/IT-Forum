@@ -26,6 +26,7 @@ class ProfilesTest extends TestCase
         $this->withoutExceptionHandling();
 
         $user = create('App\User');
+        $this->signIn($user);
         $thread = create('App\Thread', ['user_id' => $user->id]);
 
         $this->get("/profiles/{$user->name}")
