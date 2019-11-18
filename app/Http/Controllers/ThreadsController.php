@@ -7,6 +7,7 @@ use App\Thread;
 use App\Channel;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ThreadsController extends Controller
 {
@@ -70,10 +71,12 @@ class ThreadsController extends Controller
 
     public function destroy($channel, Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         $thread->replies()->delete();
         $thread->delete();
+
         return redirect('/threads');
-        return response([], 204);
     }
 
     protected function getThreads(Channel $channel, ThreadFilters $filters)
