@@ -12,8 +12,10 @@
               <div class="card-header">
                 <div class="d-flex align-items-center">
                   <div  class="flex-fill">
-                      <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
-                      {{$thread->title}}
+                      <h5 class="flex-fill">
+                        <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
+                        {{$thread->title}}
+                      </h5>
                   </div>
 
                   @can('update',$thread)

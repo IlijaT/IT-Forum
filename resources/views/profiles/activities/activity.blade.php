@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center">
         <div class="flex-fill">
           
-          {{ $heading }}"</a>
+          {{ $heading }}</a>
           
         </div>
 
