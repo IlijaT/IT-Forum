@@ -1912,6 +1912,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.editing = false;
         flash('Updated');
       });
+    },
+    destroy: function destroy() {
+      var _this2 = this;
+
+      axios["delete"]('/replies/' + this.attributes.id).then(function () {
+        $(_this2.$el).fadeOut(300, function () {
+          flash('Your reply has been deleted!');
+        });
+      });
     }
   }
 });
