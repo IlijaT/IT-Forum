@@ -8,15 +8,11 @@
                 said {{$reply->created_at->diffForHumans()}}...
             </h5>
 
-            <div>
-              <favorite :reply="{{ $reply }}"></favorite>
-              {{-- <form action="/replies/{{$reply->id}}/favorites" method="post">
-                  @csrf
-                  <button type="submit" class="btn btn-success" {{ $reply->isFavorited() ? 'disabled' : ''}}>
-                      {{ $reply->favorites_count }} {{ Str::plural ('Favorite', $reply->favorites_count ) }}
-                  </button>
-              </form> --}}
-            </div>
+            @auth
+              <div>
+                <favorite :reply="{{ $reply }}"></favorite>
+              </div>
+            @endauth
         </div>
 
       </div>
