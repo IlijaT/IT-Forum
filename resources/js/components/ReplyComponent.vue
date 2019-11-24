@@ -5,8 +5,12 @@
 </template>
 
 <script>
+
+import favorite from './Favorite.vue';
+
 export default {
   props: ['attributes'],
+  components: {favorite},
   data() {
     return {
       editing: false,

@@ -17,6 +17,17 @@ trait Favoritable
     }
   }
 
+  public function getIsFavoritedAttribute()
+  {
+    return $this->isFavorited();
+  }
+
+  public function unfavorite()
+  {
+
+    $this->favorites()->where('user_id', auth()->id())->delete();
+  }
+
   public function isFavorited()
   {
     return !!$this->favorites->where('user_id', auth()->id())->count();
