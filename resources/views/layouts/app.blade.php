@@ -19,6 +19,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        window.App = {!! json_encode([
+            'signedIn' => Auth::check(),
+            'user'  => Auth::user(),
+        ]) !!};
+    </script>
     <style>
         body : {padding-bottom: 100px}
         [v-cloak] : {display: none !important;}

@@ -1,5 +1,5 @@
 <reply-component :attributes="{{ $reply }}" inline-template v-cloak>
-
+{{-- 
   <div id="reply-{{ $reply->id }}" class="card mb-2">
       <div class="card-header">
         <div class="d-flex align-items-center">
@@ -36,6 +36,6 @@
         </div>
       @endcan
 
-  </div>
+  </div> --}}
 
 </reply-component>
