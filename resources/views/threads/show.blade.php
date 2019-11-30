@@ -36,11 +36,14 @@
                   </div>
               </div>
 
-              <replies :data="{{$thread->replies}}" @removed="repliesCount--"></replies>
+              <replies :data="{{$thread->replies}}" 
+                  @removed="repliesCount--"
+                  @added="repliesCount++">
+              </replies>
 
               {{$replies->links()}}
       
-              @auth
+              {{-- @auth
                 <form action="{{ $thread->path() . '/replies'}}" method="post">
                   @csrf
                   <div class="form-group">
@@ -50,7 +53,7 @@
                 </form>
               @else
                 <p class="text-center">Please <a href="{{ route('login') }}">sign in </a>to participate in this discusion</p>
-              @endauth
+              @endauth --}}
           </div>
 
           {{-- Right side --}}
