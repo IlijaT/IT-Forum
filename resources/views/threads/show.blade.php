@@ -36,13 +36,11 @@
                   </div>
               </div>
 
-              <replies :data="{{$thread->replies}}" 
+              <replies 
                   @removed="repliesCount--"
                   @added="repliesCount++">
               </replies>
 
-              {{$replies->links()}}
-      
               {{-- @auth
                 <form action="{{ $thread->path() . '/replies'}}" method="post">
                   @csrf
