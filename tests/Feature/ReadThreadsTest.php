@@ -40,16 +40,6 @@ class ReadThreadsTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_read_replies_associated_with_a_thread()
-    {
-
-        $reply = create(Reply::class, ['thread_id' => $this->thread->id]);
-
-        $this->get($this->thread->path())
-            ->assertSee($reply->body);
-    }
-
-    /** @test */
     public function a_user_can_filter_threads_according_to_a_channel()
     {
 
@@ -80,7 +70,6 @@ class ReadThreadsTest extends TestCase
     /** @test */
     public function a_user_can_filter_threads_by_popularity()
     {
-        $this->withoutExceptionHandling();
 
         $threadWithThreeReplies = create('App\Thread');
         create('App\Reply', ['thread_id' => $threadWithThreeReplies->id], 3);
@@ -96,17 +85,28 @@ class ReadThreadsTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_request_all_replies_for_a_given_thread()
+    public function a_user_can_filter_threads_by_those_that_are_not_answered()
     {
         $this->withoutExceptionHandling();
+
+        $threadWithThreeReplies = create('App\Thread');
+        create('App\Reply', ['thread_id' => $threadWithThreeReplies->id], 3);
+
+        $threadWithNoReplies = $this->thread;
+
+        $response = $this->getJson('/threads?unanswered=1')->json();
+
+        $this->assertCount(1, $response);
+    }
+
+    /** @test */
+    public function a_user_can_request_all_replies_for_a_given_thread()
+    {
         $thread = create('App\Thread');
         create('App\Reply', ['thread_id' => $thread->id], 2);
         $response = $this->getJson($thread->path() . '/replies')->json();
 
-        $this->assertCount(1, $response['data']);
+        $this->assertCount(2, $response['data']);
         $this->assertEquals(2, $response['total']);
-
-
-        // dd($response);
     }
 }
