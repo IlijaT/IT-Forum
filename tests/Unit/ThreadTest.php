@@ -88,4 +88,20 @@ class ThreadTest extends TestCase
 
         $this->assertCount(0, $thread->subscriptions);
     }
+
+    /** @test */
+    public function it_knows_if_authenticated_user_is_subscribed_to_it()
+    {
+        $this->withoutExceptionHandling();
+
+        $thread = create('App\Thread');
+
+        $this->signIn();
+
+        $this->assertFalse($thread->isSubscribed);
+
+        $thread->subscribe();
+
+        $this->assertTrue($thread->isSubscribed);
+    }
 }

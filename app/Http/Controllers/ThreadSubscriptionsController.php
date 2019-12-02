@@ -9,6 +9,11 @@ class ThreadSubscriptionsController extends Controller
 {
     public function store($channelId, Thread $thread)
     {
-        return $thread->subscribe();
+        $thread->subscribe();
+    }
+
+    public function destroy($channelId, Thread $thread)
+    {
+        $thread->unsubscribe();
     }
 }

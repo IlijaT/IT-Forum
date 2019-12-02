@@ -41,17 +41,6 @@
                   @added="repliesCount++">
               </replies>
 
-              {{-- @auth
-                <form action="{{ $thread->path() . '/replies'}}" method="post">
-                  @csrf
-                  <div class="form-group">
-                    <textarea class="form-control" id="body" name="body" placeholder="Have something to say?" rows="5"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Post</button>
-                </form>
-              @else
-                <p class="text-center">Please <a href="{{ route('login') }}">sign in </a>to participate in this discusion</p>
-              @endauth --}}
           </div>
 
           {{-- Right side --}}
@@ -61,6 +50,9 @@
                   This thread was published {{ $thread->created_at->diffForHumans() }}
                   by <a href="#">{{ $thread->creator->name }}</a> and curently has 
                   <span v-text="repliesCount"></span> {{ Str::plural ('comment', $thread->replies_count) }}.
+                  <p>
+                    <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+                  </p>
                 </div>
             </div>
           </div>
