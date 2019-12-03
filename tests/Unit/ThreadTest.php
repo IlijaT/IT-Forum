@@ -19,7 +19,6 @@ class ThreadTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
         $this->thread = create(Thread::class);
     }
 
@@ -27,7 +26,6 @@ class ThreadTest extends TestCase
     public function it_can_make_a_sting_path()
     {
         $thread = create('App\Thread');
-
         $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
     }
 
@@ -42,7 +40,6 @@ class ThreadTest extends TestCase
     public function it_has_replies()
     {
         factory(Reply::class, 3)->create(['thread_id' => $this->thread->id]);
-
         $this->assertInstanceOf(Collection::class, $this->thread->replies);
     }
 
@@ -53,7 +50,6 @@ class ThreadTest extends TestCase
             'body' => 'Foobar',
             'user_id' => 1
         ]);
-
         $this->assertCount(1, $this->thread->replies);
     }
 
@@ -61,9 +57,7 @@ class ThreadTest extends TestCase
     public function it_belongs_to_a_channel()
     {
         $this->withoutExceptionHandling();
-
         $thread = create('App\Thread');
-
         $this->assertInstanceOf('App\Channel', $thread->channel);
     }
 
@@ -71,9 +65,7 @@ class ThreadTest extends TestCase
     public function a_thread_can_be_subscribed_to()
     {
         $thread = create('App\Thread');
-
         $thread->subscribe($userId = 1);
-
         $this->assertEquals(1, $thread->subscriptions()->where('user_id', $userId)->count());
     }
 
@@ -81,27 +73,18 @@ class ThreadTest extends TestCase
     public function a_thread_can_be_unsubscribed_from()
     {
         $thread = create('App\Thread');
-
         $thread->subscribe($userId = 1);
         $thread->unsubscribe($userId);
-
-
         $this->assertCount(0, $thread->subscriptions);
     }
 
     /** @test */
     public function it_knows_if_authenticated_user_is_subscribed_to_it()
     {
-        $this->withoutExceptionHandling();
-
         $thread = create('App\Thread');
-
         $this->signIn();
-
-        $this->assertFalse($thread->isSubscribed);
-
+        $this->assertFalse($thread->isSubscribedTo);
         $thread->subscribe();
-
-        $this->assertTrue($thread->isSubscribed);
+        $this->assertTrue($thread->isSubscribedTo);
     }
 }
