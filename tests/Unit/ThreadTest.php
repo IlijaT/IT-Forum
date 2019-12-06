@@ -6,6 +6,7 @@ use App\Notifications\ThreadWasUpdated;
 use App\User;
 use App\Reply;
 use App\Thread;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -105,5 +106,21 @@ class ThreadTest extends TestCase
         $this->assertFalse($thread->isSubscribedTo);
         $thread->subscribe();
         $this->assertTrue($thread->isSubscribedTo);
+    }
+
+    /** @test */
+    public function a_thread_can_check_if_authenticated_user_has_read_all_replies()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread');
+
+        $this->assertTrue($thread->hasUpdatesFor(auth()->user()));
+
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
+
+        cache()->forever($key, Carbon::now());
+
+        $this->assertFalse($thread->hasUpdatesFor(auth()->user()));
     }
 }

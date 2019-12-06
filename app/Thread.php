@@ -98,4 +98,12 @@ class Thread extends Model
             ->where('user_id', auth()->id())
             ->exists();
     }
+
+    public function hasUpdatesFor()
+    {
+        // users.50.visits.8
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
+
+        return $this->updated_at > cache($key);
+    }
 }

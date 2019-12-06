@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Thread;
 use App\Channel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -53,6 +54,9 @@ class ThreadsController extends Controller
 
     public function show($channel, Thread $thread)
     {
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
+        cache()->forever($key, Carbon::now());
+
         return view('threads.show', compact('thread'));
     }
 
