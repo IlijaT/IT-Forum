@@ -99,10 +99,9 @@ class Thread extends Model
             ->exists();
     }
 
-    public function hasUpdatesFor()
+    public function hasUpdatesFor($user)
     {
-        // users.50.visits.8
-        $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
+        $key = $user->visitedThreadCacheKey($this);
 
         return $this->updated_at > cache($key);
     }
