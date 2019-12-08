@@ -12,7 +12,7 @@
                         <div class="d-flex align-items-center">
                             <p class="flex-fill">
                                 <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
-                                @if ($thread->hasUpdatesFor(auth()->user()))
+                                @if (auth()->check() && $thread->hasUpdatesFor(auth()->user()))
                                     <strong>
                                         <a href="{{$thread->path()}}">{{ $thread->title }}</a>
                                     </strong>
