@@ -2,16 +2,20 @@
 
 namespace App;
 
+use Exception;
+
 class Spam
 {
     public function detect($body)
     {
         $this->detectInvalidKeywords($body);
+        $this->detectKeyHeldDown($body);
+
 
         return false;
     }
 
-    private function detectInvalidKeywords($body)
+    protected function detectInvalidKeywords($body)
     {
         $invalidKeywords = [
             'yahoo customer support'
@@ -21,6 +25,13 @@ class Spam
             if (stripos($body, $keyword) !== false) {
                 throw new Exception("You reply contains spam");
             }
+        }
+    }
+
+    protected function detectKeyHeldDown($body)
+    {
+        if (preg_match('/(.)\\1{4,}/', $body)) {
+            throw new Exception('Your reply contains spam.');
         }
     }
 }
