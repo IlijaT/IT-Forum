@@ -61,7 +61,8 @@ export default {
 
         this.editing = false;
         flash('Updated');
-      });
+      })
+      .catch(error => flash(error.response.data, 'danger'));
     },
     destroy() {
       axios.delete('/replies/' + this.data.id).then(() => {
