@@ -6,6 +6,7 @@ use App\Channel;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,5 +36,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Schema::defaultStringLength(191); //NEW: Increase StringLength
+
+        Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }
 }
