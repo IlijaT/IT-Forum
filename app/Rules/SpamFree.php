@@ -28,7 +28,7 @@ class SpamFree implements Rule
     {
         try {
             return !resolve(Spam::class)->detect($value);
-        } catch (\Exception $th) {
+        } catch (Exception $e) {
             return false;
         }
     }

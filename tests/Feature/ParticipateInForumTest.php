@@ -20,6 +20,19 @@ class ParticipateInForumTest extends TestCase
     }
 
 
+
+    /** @test */
+    public function an_unauthorised_user_cannot_delete_reply()
+    {
+        $reply = create('App\Reply');
+        $this->delete("/replies/{$reply->id}")->assertRedirect('/login');
+
+        $this->signIn()
+            ->delete("/replies/{$reply->id}")
+            ->assertStatus(403);
+    }
+
+
     /** @test */
     public function an_authenticated_user_may_participate_in_forum_threads()
     {
@@ -36,28 +49,17 @@ class ParticipateInForumTest extends TestCase
         $this->assertEquals(1, $thread->fresh()->replies_count);
     }
 
-    /** @test */
-    public function a_reply_requires_a_body()
-    {
-        $this->signIn();
+    // /** @test */
+    // public function a_reply_requires_a_body()
+    // {
+    //     $this->signIn();
 
-        $thread = create('App\Thread');
-        $reply = make('App\Reply', ['body' => '']);
+    //     $thread = create('App\Thread');
+    //     $reply = make('App\Reply', ['body' => '']);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertSessionHasErrors('body');
-    }
-
-    /** @test */
-    public function an_unauthorised_user_cannot_delete_reply()
-    {
-        $reply = create('App\Reply');
-        $this->delete("/replies/{$reply->id}")->assertRedirect('/login');
-
-        $this->signIn()
-            ->delete("/replies/{$reply->id}")
-            ->assertStatus(403);
-    }
+    //     $this->post($thread->path() . '/replies', $reply->toArray())
+    //         ->assertSessionHasErrors('body');
+    // }
 
     /** @test */
     public function authorised_user_can_delete_reply()
@@ -82,7 +84,7 @@ class ParticipateInForumTest extends TestCase
 
         $this->signIn()
             ->patch("/replies/{$reply->id}")
-            ->assertStatus(403);
+            ->assertStatus(422);
     }
 
     /** @test */
@@ -100,14 +102,29 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function threads_that_contain_spam_may_not_be_created()
     {
-        $this->withoutExceptionHandling();
 
         $this->signIn();
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => 'Yahoo Customer Support']);
 
-        $this->expectException(\Exception::class);
-        $this->post($thread->path() . '/replies', $reply->toArray());
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function a_users_may_only_reply_once_in_a_minute()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', ['body' => 'Hellooo']);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(201);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
     }
 }
