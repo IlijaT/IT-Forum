@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Reply;
 use App\Thread;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\CreatePostRequest;
 
 class RepliesController extends Controller
 {
@@ -20,26 +21,13 @@ class RepliesController extends Controller
         return $thread->replies()->paginate(5);
     }
 
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $postForm)
     {
-        if (Gate::denies('create', new Reply())) {
-            return response('You are posting too frequently. Please, take a brak!', 422);
-        }
 
-        try {
-            $this->authorize('create', new Reply());
-            request()->validate(['body' => 'required|spamfree']);
-
-            $reply = $thread->addReply([
-                'body' => request('body'),
-                'user_id' => auth()->id(),
-            ]);
-        } catch (\Exception $e) {
-            return response('Sorry, your reply could not be saved at this time', 422);
-        }
-
-
-        return $reply->load('owner');
+        return $thread->addReply([
+            'body' => request('body'),
+            'user_id' => auth()->id(),
+        ])->load('owner');
     }
 
     public function destroy(Reply $reply)

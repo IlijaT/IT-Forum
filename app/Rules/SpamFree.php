@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Inspections\Spam;
+use Exception;
 use Illuminate\Contracts\Validation\Rule;
 
 class SpamFree implements Rule

@@ -49,17 +49,17 @@ class ParticipateInForumTest extends TestCase
         $this->assertEquals(1, $thread->fresh()->replies_count);
     }
 
-    // /** @test */
-    // public function a_reply_requires_a_body()
-    // {
-    //     $this->signIn();
+    /** @test */
+    public function a_reply_requires_a_body()
+    {
+        $this->signIn();
 
-    //     $thread = create('App\Thread');
-    //     $reply = make('App\Reply', ['body' => '']);
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', ['body' => '']);
 
-    //     $this->post($thread->path() . '/replies', $reply->toArray())
-    //         ->assertSessionHasErrors('body');
-    // }
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertSessionHasErrors('body');
+    }
 
     /** @test */
     public function authorised_user_can_delete_reply()
@@ -100,31 +100,31 @@ class ParticipateInForumTest extends TestCase
     }
 
     /** @test */
-    public function threads_that_contain_spam_may_not_be_created()
+    public function replies_that_contain_spam_may_not_be_created()
     {
+
 
         $this->signIn();
 
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => 'Yahoo Customer Support']);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->json('POST', $thread->path() . '/replies', $reply->toArray())
             ->assertStatus(422);
     }
 
     /** @test */
     public function a_users_may_only_reply_once_in_a_minute()
     {
-        $this->withoutExceptionHandling();
 
         $this->signIn();
         $thread = create('App\Thread');
-        $reply = make('App\Reply', ['body' => 'Hellooo']);
+        $reply = make('App\Reply', ['body' => 'Helloo']);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
             ->assertStatus(201);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertStatus(422);
+            ->assertStatus(403);
     }
 }
