@@ -77,6 +77,8 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function an_unauthorised_user_cannot_update_reply()
     {
+        $this->withExceptionHandling();
+
         $reply = create('App\Reply');
         $this->patch("/replies/{$reply->id}", ['body' => 'Updated reply'])
             ->assertStatus(302)
@@ -84,7 +86,9 @@ class ParticipateInForumTest extends TestCase
 
         $this->signIn()
             ->patch("/replies/{$reply->id}")
-            ->assertStatus(422);
+            ->assertStatus(302);
+
+        $this->assertDatabaseMissing('replies', ['id' => $reply->id, 'body' => 'Updated reply']);
     }
 
     /** @test */
