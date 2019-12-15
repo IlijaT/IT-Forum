@@ -2,6 +2,13 @@
 
 @extends('layouts.app')
 
+@section('head') 
+{{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeQ0scUAAAAAPnuVTcWdGveYL7UwvE3qperK1Wj"></script> --}}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+@endsection
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -35,6 +42,12 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6Ldv08cUAAAAAGmyMtLACYBI7zquPzzLlswlrqYL"></div>
+                    </div>
+
+
+
+                    <div class="form-group">
                       <button type="submit" class="btn btn-primary">Publish</button>
                     </div>
 
@@ -53,3 +66,5 @@
     </div>
 </div>
 @endsection
+
+ 
