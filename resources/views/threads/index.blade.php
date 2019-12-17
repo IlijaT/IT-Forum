@@ -4,37 +4,12 @@
 
 @section('content')
 <div class="container">
-    @forelse ($threads as $thread)
-        <div class="row justify-content-center mb-2">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center">
-                            <p class="flex-fill">
-                                <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
-                                @if (auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-                                    <strong>
-                                        <a href="{{$thread->path()}}">{{ $thread->title }}</a>
-                                    </strong>
-                                @else
-                                    <a href="{{$thread->path()}}">{{ $thread->title }}</a>
-                                @endif
-                            </p>
+    @include('threads._list')
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            {{ $threads->links() }}
 
-                            <a href="{{$thread->path()}}">{{ $thread->replies_count }} {{ Str::plural ('reply', $thread->replies_count) }}</a>
-
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="body"> {{ $thread->body }}</div>
-                    </div>
-                </div>
-            </div>
         </div>
-    @empty
-       There are no relevant results at this time 
-    @endforelse
-
+    </div>
 </div>
 @endsection
