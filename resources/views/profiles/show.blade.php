@@ -10,6 +10,18 @@
             <h4>
               {{ $profileUser->name }}
             </h4>
+
+            @can('update', $profileUser)
+            <form  method="POST" action="{{ route('avatar', $profileUser) }}" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="avatar">
+                <div class="mt-1">
+
+                  <button type="submit" class="btn btn-primary">Add Avatar</button>
+                </div>
+              </form>
+            @endcan
+            <img src="{{ asset('storage/'.$profileUser->avatar_path) }}" alt="avatar" width="80" height="80">
           </div>
         
           @forelse ($activities as $date => $activity)

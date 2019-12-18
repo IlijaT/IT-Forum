@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         cache()->forever($this->visitedThreadCacheKey($thread), Carbon::now());
     }
+
+    public function avatar()
+    {
+        return  $this->avatar_path ? 'storage/' . $this->avatar_path : 'storage/avatars/default.jpg';
+    }
 }

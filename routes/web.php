@@ -45,4 +45,4 @@ Auth::routes();
 
 
 Route::get('api/users', 'Api\UsersController@index');
-Route::post('api/users/{user}/avatars', 'Api\UserAvatarsControler@store')->middleware('auth');
+Route::post('api/users/{user}/avatars', 'Api\UserAvatarsControler@store')->middleware('auth')->name('avatar');
