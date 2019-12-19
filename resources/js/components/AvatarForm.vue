@@ -1,47 +1,49 @@
  <template>
    <div>
-      <h4 v-text="user.name"></h4>
+
+      <div class="d-flex mb-1 align-items-end">
+        <img :src="avatar" alt="avatar" width="80" height="80" class="mr-1">
+        <h4 v-text="user.name"></h4>
+      </div>
 
       <form v-if="canUpdate"  method="POST" enctype="multipart/form-data">
-          
-          <input type="file" name="avatar" accept="image/*" @change="onChange">
+          <image-upload name="avatar" @loaded="onLoad"></image-upload>
+          <!-- <input type="file" name="avatar" accept="image/*" @change="onChange"> -->
         </form>
-      <img :src="avatar" alt="avatar" width="80" height="80">
    </div>
  </template>
 
  <script>
+
+ import ImageUpload from './ImageUpload.vue';
+
  export default {
+
+   components: {ImageUpload},
    props: ['user'],
+
+   created() {
+     console.log(this.user.avatar_path);
+     
+   },
 
    data() {
      return {
-       avatar: ''
+       avatar: this.user.avatar_path
      }
    },
    methods: {
-     onChange(e) {
-       if(! e.target.files.length) return
-       let avatar = e.target.files[0];
-       let reader = new FileReader();
+    onLoad(avatar){
+      this.avatar = avatar.src;
+      this.persist(avatar.file);
+    },
 
-       reader.readAsDataURL(avatar);
-
-       reader.onload = e => {
-         this.avatar = e.target.result;
-       };
-
-      // persist to the server
-      this.persist(avatar);
-
-     },
-
-     persist(avatar) {
-        let data = new FormData();
-        data.append('avatar', avatar);
-        axios.post(`/api/users/${this.user.name}/avatars`, data)
-          .then(() => flash('Avatar is uploaded!'));
-     }
+    persist(avatar) {
+      let data = new FormData();
+      data.append('avatar', avatar);
+      axios.post(`/api/users/${this.user.name}/avatars`, data)
+        .then(() => flash('Avatar is uploaded!'));
+    }
    },
    computed: {
      canUpdate() {

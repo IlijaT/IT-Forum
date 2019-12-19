@@ -18,7 +18,7 @@
                   <div class="d-flex align-items-center">
                     <div  class="flex-fill">
                         <h5 class="flex-fill">
-                          <img src="{{ asset( $thread->creator->avatar())  }}" alt="avatar" width="25" height="25" class="mr-2">
+                          <img src="{{ asset( $thread->creator->avatar_path)  }}" alt="avatar" width="25" height="25" class="mr-2">
                           <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
                           {{$thread->title}}
                         </h5>

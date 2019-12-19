@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -70,8 +71,9 @@ class User extends Authenticatable
         cache()->forever($this->visitedThreadCacheKey($thread), Carbon::now());
     }
 
-    public function avatar()
+    public function getAvatarPathAttribute($avatar)
     {
-        return  $this->avatar_path ? 'storage/' . $this->avatar_path : 'storage/avatars/default.jpg';
+        return  asset( Storage::url($avatar ?: 'avatars/default.jpg'));
+        // return  $avatar ? 'storage/' . $avatar : 'storage/avatars/default.jpg';
     }
 }
