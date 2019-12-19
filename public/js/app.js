@@ -3070,10 +3070,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   data: function data() {
@@ -3081,12 +3077,36 @@ __webpack_require__.r(__webpack_exports__);
       avatar: ''
     };
   },
-  computed: {
-    canUpdate: function canUpdate() {
+  methods: {
+    onChange: function onChange(e) {
       var _this = this;
 
+      if (!e.target.files.length) return;
+      var avatar = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(avatar);
+
+      reader.onload = function (e) {
+        _this.avatar = e.target.result;
+      }; // persist to the server
+
+
+      this.persist(avatar);
+    },
+    persist: function persist(avatar) {
+      var data = new FormData();
+      data.append('avatar', avatar);
+      axios.post("/api/users/".concat(this.user.name, "/avatars"), data).then(function () {
+        return flash('Avatar is uploaded!');
+      });
+    }
+  },
+  computed: {
+    canUpdate: function canUpdate() {
+      var _this2 = this;
+
       return this.autorize(function (user) {
-        return user.id === _this.user.id;
+        return user.id === _this2.user.id;
       });
     }
   }
@@ -57642,9 +57662,10 @@ var render = function() {
           "form",
           { attrs: { method: "POST", enctype: "multipart/form-data" } },
           [
-            _c("input", { attrs: { type: "file", name: "avatar" } }),
-            _vm._v(" "),
-            _vm._m(0)
+            _c("input", {
+              attrs: { type: "file", name: "avatar", accept: "image/*" },
+              on: { change: _vm.onChange }
+            })
           ]
         )
       : _vm._e(),
@@ -57654,20 +57675,7 @@ var render = function() {
     })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-1" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_vm._v("Add Avatar")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -71156,8 +71164,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Laravel_VueJS\IT-Forum\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Laravel_VueJS\IT-Forum\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Laravel projekti\IT-Forum\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Laravel projekti\IT-Forum\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
