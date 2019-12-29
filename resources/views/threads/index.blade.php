@@ -13,6 +13,7 @@
         </div>
 
         <div class="col-md-4">
+            @if (count($trending))
             <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
@@ -38,6 +39,7 @@
                         @endforeach
                     </div>
                 </div>
+            @endif
         
         </div>
           
