@@ -70,6 +70,8 @@ class ThreadsController extends Controller
             'path' => $thread->path()
         ]));
 
+        $thread->recordVisit();
+
         return view('threads.show', compact('thread'));
     }
 
