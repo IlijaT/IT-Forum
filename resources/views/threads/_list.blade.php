@@ -25,6 +25,11 @@
             <div class="card-body">
                 <div class="body"> {{ $thread->body }}</div>
             </div>
+
+            <div class="card-footer">
+                <p>100 views</p>
+            </div>
+
         </div>
 
 
