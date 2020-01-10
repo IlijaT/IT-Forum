@@ -8,6 +8,7 @@ use App\Trending;
 use App\Rules\Recaptcha;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
+use Illuminate\Support\Facades\Redis;
 
 class ThreadsController extends Controller
 {
@@ -38,6 +39,7 @@ class ThreadsController extends Controller
 
     public function store(Recaptcha $recaptcha)
     {
+
         request()->validate([
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',

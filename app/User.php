@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute($avatar)
     {
-        return  asset( Storage::url($avatar ?: 'avatars/default.jpg'));
+        return  asset(Storage::url($avatar ?: 'avatars/default.jpg'));
         // return  $avatar ? 'storage/' . $avatar : 'storage/avatars/default.jpg';
     }
 }

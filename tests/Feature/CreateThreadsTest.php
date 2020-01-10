@@ -13,7 +13,7 @@ class CreateThreadsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp() :void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -40,10 +40,18 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_user_can_create_new_forum_thread()
+    public function authenticated_users_must_first_confirm_their_email_address_before_creating_a_thread()
     {
         $this->withoutExceptionHandling();
-        
+
+        $this->publishThread()
+            ->assertRedirect('/email/verify');
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_create_new_forum_thread()
+    {
+
         $response = $this->publishThread(['title' => 'Some title', 'body' => 'Some body']);
 
         $thread = Thread::first();
@@ -52,7 +60,6 @@ class CreateThreadsTest extends TestCase
         $this->get($response->headers->get('Location'))
             ->assertSee('Some title')
             ->assertSee('Some body');
-
     }
 
     /** @test */

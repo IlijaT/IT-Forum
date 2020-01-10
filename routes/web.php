@@ -23,7 +23,7 @@ Route::get('/threads/create', 'ThreadsController@create')->name('threads.create'
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show')->name('threads.show');
 Route::delete('/threads/{channel}/{thread}', 'ThreadsController@destroy')->name('threads.delete');
 Route::get('/threads/{channel}', 'ThreadsController@index');
-Route::post('/threads', 'ThreadsController@store')->name('threads.store');
+Route::post('/threads', 'ThreadsController@store')->name('threads.store')->middleware('verified');
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth')->name('threads.subscribe');
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth')->name('threads.delete');
 
@@ -41,7 +41,7 @@ Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 Route::get('api/users', 'Api\UsersController@index');
