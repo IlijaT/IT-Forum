@@ -61,7 +61,12 @@ class ThreadsController extends Controller
             auth()->user()->read($thread);
         }
 
-        $trending->incrementByOne($thread);
+        Redis::zincrby('trending_threads', 1, json_encode([
+            'title' => $thread->title,
+            'path' => $thread->path()
+        ]));
+
+        $thread->increment('visits');
 
         return view('threads.show', compact('thread'));
     }

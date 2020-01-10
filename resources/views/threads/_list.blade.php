@@ -1,6 +1,6 @@
     @forelse ($threads as $thread)
 
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <div class="flex-fill">
@@ -25,6 +25,11 @@
             <div class="card-body">
                 <div class="body"> {{ $thread->body }}</div>
             </div>
+
+            <div class="card-footer">
+                <p>{{ $thread->visits }} Visits</p>
+            </div>
+
         </div>
 
 
