@@ -80,6 +80,33 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
+    public function a_thread_requires_an_unique_slug()
+    {
+        $this->withoutExceptionHandling();
+
+        // $this->signIn();
+
+        // $thread = create('App\Thread', ['title' => 'Foo Thread', 'slug' => 'foo-thread']);
+
+        // $this->assertEquals($thread->fresh()->slug, 'foo-thread');
+
+        // $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
+        // $this->assertTrue(Thread::where('slug', 'foo-thread-2')->exists());
+
+        // $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
+        // $this->assertTrue(Thread::where('slug', 'foo-thread-3')->exists());
+
+
+        $this->signIn();
+        $thread = create('App\Thread', ['title' => 'Foo Title', 'slug' => 'foo-title']);
+        $this->assertEquals($thread->fresh()->slug, 'foo-title');
+        $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
+        $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
+        $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
+        $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
+    }
+
+    /** @test */
     public function a_thread_requires_recaptcha_verifications()
     {
         unset(app()[Recaptcha::class]);
