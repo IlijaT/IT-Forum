@@ -40,11 +40,17 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    public function authenticated_users_must_first_confirm_their_email_address_before_creating_a_thread()
+    public function new_users_must_first_confirm_their_email_address_before_creating_a_thread()
     {
-        $this->withoutExceptionHandling();
 
-        $this->publishThread()
+        $user = factory('App\User')->states('unverified')->create();
+        $this->signIn($user);
+
+        $thread = create('App\Thread');
+
+        // dd(auth()->user());
+
+        $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test'])
             ->assertRedirect('/email/verify');
     }
 
