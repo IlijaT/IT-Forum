@@ -6,6 +6,7 @@ use App\Thread;
 use App\Channel;
 use App\Trending;
 use App\Rules\Recaptcha;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use Illuminate\Support\Facades\Redis;
@@ -52,6 +53,7 @@ class ThreadsController extends Controller
             'body' => request('body'),
             'channel_id' => request('channel_id'),
             'user_id' => auth()->id(),
+            'slug' => Str::slug(request('title')),
         ]);
 
         return redirect($thread->path())->with('flash', 'Your thread has been published');

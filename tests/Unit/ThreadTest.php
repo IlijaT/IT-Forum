@@ -27,10 +27,10 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function it_can_make_a_sting_path()
+    public function it_has_a_path()
     {
         $thread = create('App\Thread');
-        $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
+        $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->slug}", $thread->path());
     }
 
     /** @test */

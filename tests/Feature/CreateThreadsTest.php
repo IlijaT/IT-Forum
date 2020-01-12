@@ -60,9 +60,6 @@ class CreateThreadsTest extends TestCase
 
         $response = $this->publishThread(['title' => 'Some title', 'body' => 'Some body']);
 
-        $thread = Thread::first();
-
-
         $this->get($response->headers->get('Location'))
             ->assertSee('Some title')
             ->assertSee('Some body');
