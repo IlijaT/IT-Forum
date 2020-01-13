@@ -84,26 +84,24 @@ class CreateThreadsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        // $this->signIn();
-
-        // $thread = create('App\Thread', ['title' => 'Foo Thread', 'slug' => 'foo-thread']);
-
-        // $this->assertEquals($thread->fresh()->slug, 'foo-thread');
-
-        // $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
-        // $this->assertTrue(Thread::where('slug', 'foo-thread-2')->exists());
-
-        // $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
-        // $this->assertTrue(Thread::where('slug', 'foo-thread-3')->exists());
-
-
         $this->signIn();
-        $thread = create('App\Thread', ['title' => 'Foo Title', 'slug' => 'foo-title']);
-        $this->assertEquals($thread->fresh()->slug, 'foo-title');
-        $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
-        $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
-        $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test']);
-        $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
+        $thread = create('App\Thread', ['title' => 'Foo Title']);
+
+        $this->assertEquals($thread->slug, 'foo-title');
+
+        $thread = $this->postJson('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test'])->json();
+
+        $this->assertEquals("foo-title-{$thread['id']}", $thread['slug']);
+    }
+
+    /** @test */
+    function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
+    {
+        $this->signIn();
+        $thread = create('App\Thread', ['title' => 'Some Title 24']);
+
+        $thread = $this->postJson('/threads', $thread->toArray() + ['g-recaptcha-response' => 'test'])->json();
+        $this->assertEquals("some-title-24-{$thread['id']}", $thread['slug']);
     }
 
     /** @test */
