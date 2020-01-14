@@ -40,19 +40,29 @@ class ReplyTest extends TestCase
     public function it_can_detect_all_mentioned_users_in_body()
     {
 
-        $reply = new \App\Reply(['body' => 'Hello @JohnDoe and @JaneDoe']);
+        $reply = new Reply(['body' => 'Hello @JohnDoe and @JaneDoe']);
 
         $this->assertEquals(['JohnDoe', 'JaneDoe'], $reply->mentionedUsers());
     }
 
     /** @test */
-    public function it_wraps_mantioned_usernames_within_anchor_tag() 
+    public function it_wraps_mantioned_usernames_within_anchor_tag()
     {
-        $reply =  new \App\Reply(['body' => 'Hello @JaneDoe.']);
-    
-        
-        $this->assertEquals('Hello <a href="/profiles/JaneDoe">@JaneDoe</a>.', $reply->body);
+        $reply =  new Reply(['body' => 'Hello @JaneDoe.']);
 
-    
+
+        $this->assertEquals('Hello <a href="/profiles/JaneDoe">@JaneDoe</a>.', $reply->body);
+    }
+
+    /** @test */
+    public function it_knows_if_it_is_the_best_reply()
+    {
+        $reply = create('App\Reply');
+
+        $this->assertFalse($reply->isBest());
+
+        $reply->thread->update(['best_reply_id' => $reply->id]);
+
+        $this->assertTrue($reply->fresh()->isBest());
     }
 }
