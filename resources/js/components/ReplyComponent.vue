@@ -32,12 +32,11 @@
 
        <!-- @can ('update', $reply) -->
         <div class="card-footer d-flex">
-          <div v-if="canUpdate">
+          <div v-if="authorize('updateReply', reply)">
             <button @click="editing = true" class="btn btn-default btn-secondary mr-1">Edit</button>
             <button type="submit" class="btn btn-danger btn-xs" @click="destroy">Delete</button>
           </div>
-
-          <button type="submit" class="btn btn-secondary btn-xs ml-auto" v-show="! isBest" @click="markBestReply">Best reply?</button>
+            <button type="submit" class="btn btn-secondary btn-xs ml-auto" v-show="! isBest" @click="markBestReply">Best reply?</button>
         </div>
       <!-- @endcan   -->
 
@@ -57,7 +56,8 @@ export default {
       id: this.data.id,
       editing: false,
       body: this.data.body,
-      isBest: false
+      isBest: false,
+      reply: this.data
     }
   },
   methods: {
@@ -88,13 +88,6 @@ export default {
     ago() {
       return moment(this.data.created_at).fromNow() + '...';
     },
-    signedIn() {
-      return window.App.signedIn;
-    },
-    canUpdate() {
-      return this.autorize(user => this.data.user_id == window.App.user.id);
-      //return this.data.user_id == window.App.user.id;
-    }
   },
 }
 </script>
