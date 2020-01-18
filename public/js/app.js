@@ -3534,35 +3534,40 @@ __webpack_require__.r(__webpack_exports__);
       id: this.data.id,
       editing: false,
       body: this.data.body,
-      isBest: false,
+      isBest: this.data.isBest,
       reply: this.data
     };
   },
+  created: function created() {
+    var _this = this;
+
+    window.events.$on('best-reply-selected', function (id) {
+      _this.isBest = id == _this.id;
+    });
+  },
   methods: {
     update: function update() {
-      var _this = this;
+      var _this2 = this;
 
       axios.patch('/replies/' + this.data.id, {
         body: this.body
       }).then(function () {
-        _this.editing = false;
+        _this2.editing = false;
         flash('Updated');
       })["catch"](function (error) {
         return flash(error.response.data, 'danger');
       });
     },
     destroy: function destroy() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios["delete"]('/replies/' + this.data.id).then(function () {
-        _this2.$emit('deleted', _this2.data.id); // $(this.$el).fadeOut(300, () => {
-        //   flash('Your reply has been deleted!');
-        // })
-
+        _this3.$emit('deleted', _this3.data.id);
       });
     },
     markBestReply: function markBestReply() {
-      this.isBest = true;
+      axios.post('/replies/' + this.reply.id + '/best');
+      window.events.$emit('best-reply-selected', this.reply.id);
     }
   },
   computed: {
