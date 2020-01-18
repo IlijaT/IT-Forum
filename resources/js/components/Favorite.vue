@@ -18,7 +18,7 @@ export default {
   },
   computed: {
    classes()  {
-     return ['btn', this.active ? 'btn-success' : 'btn-info'];
+     return [this.active ? 'btn btn-secondary' : 'btn btn-danger'];
    },
    endpoint(){
      return '/replies/' + this.reply.id + '/favorites';
