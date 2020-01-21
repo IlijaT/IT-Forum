@@ -3,12 +3,12 @@
       <div class="card-header" :class="isBest ? 'bg-success' : ''">
         <div class="d-flex align-items-center">
             <h5 class="flex-fill">
-              <a :href="'/profiles/'+ data.owner.name" v-text="data.owner.name"></a>
+              <a :href="'/profiles/'+ reply.owner.name" v-text="reply.owner.name"></a>
                 <span v-text="ago"></span>
             </h5>
           
             <div v-if="signedIn">
-              <favorite :reply="data"></favorite>
+              <favorite :reply="reply"></favorite>
             </div>
            
         </div>
@@ -31,12 +31,12 @@
       </div>
 
        <!-- @can ('update', $reply) -->
-        <div class="card-footer d-flex">
-          <div v-if="authorize('updateReply', reply)">
+        <div class="card-footer d-flex" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
+          <div v-if="authorize('owns', reply)">
             <button @click="editing = true" class="btn btn-default btn-secondary mr-1">Edit</button>
             <button type="submit" class="btn btn-danger btn-xs" @click="destroy">Delete</button>
           </div>
-            <button type="submit" class="btn btn-secondary btn-xs ml-auto" v-show="! isBest" @click="markBestReply">Best reply?</button>
+            <button type="submit" class="btn btn-secondary btn-xs ml-auto" v-if="authorize('owns', reply.thread)" @click="markBestReply">Best reply?</button>
         </div>
       <!-- @endcan   -->
 
@@ -49,26 +49,28 @@ import favorite from './Favorite.vue';
 import moment from 'moment';
 
 export default {
-  props: ['data'],
+
+  props: ['reply'],
+
   components: {favorite},
   data() {
     return {
-      id: this.data.id,
       editing: false,
-      body: this.data.body,
-      isBest: this.data.isBest,
-      reply: this.data
+      id: this.reply.id,
+      body: this.reply.body,
+      isBest: this.reply.isBest,
     }
   },
 
   created() {
+    
     window.events.$on('best-reply-selected', id => {
       this.isBest = (id == this.id)
     });
   },
   methods: {
     update() {
-      axios.patch('/replies/' + this.data.id, {
+      axios.patch('/replies/' + this.reply.id, {
         body: this.body
       }).then(() => {
 
@@ -78,8 +80,8 @@ export default {
       .catch(error => flash(error.response.data, 'danger'));
     },
     destroy() {
-      axios.delete('/replies/' + this.data.id).then(() => {
-        this.$emit('deleted', this.data.id);
+      axios.delete('/replies/' + this.reply.id).then(() => {
+        this.$emit('deleted', this.reply.id);
       
       });
     },
@@ -92,7 +94,7 @@ export default {
   },
   computed: {
     ago() {
-      return moment(this.data.created_at).fromNow() + '...';
+      return moment(this.reply.created_at).fromNow() + '...';
     },
   },
 }
