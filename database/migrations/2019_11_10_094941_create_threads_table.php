@@ -22,6 +22,7 @@ class CreateThreadsTable extends Migration
             $table->unsignedBigInteger('visits')->default(0);
             $table->string('title');
             $table->text('body');
+            $table->boolean('locked')->default(false);
             $table->unsignedBigInteger('best_reply_id')->nullable();
             $table->timestamps();
 
@@ -29,7 +30,6 @@ class CreateThreadsTable extends Migration
                 ->references('id')
                 ->on('replies')
                 ->onDelete('set null');
-                
 
         });
     }
