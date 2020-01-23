@@ -33,3 +33,10 @@ $factory->state(User::class, 'unverified', function (Faker $faker) {
         'email_verified_at' => null
     ];
 });
+
+
+$factory->state(User::class, 'administrator', function (Faker $faker) {
+    return [
+        'name' => 'JohnDoe'
+    ];
+});
