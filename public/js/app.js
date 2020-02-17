@@ -3173,53 +3173,10 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Flash.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['message'],
-  data: function data() {
-    return {
-      body: '',
-      level: 'success',
-      show: false
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    if (this.message) {
-      this.flash(this.message);
-    }
-
-    window.events.$on('flash', function (data) {
-      return _this.flash(data);
-    });
-  },
-  methods: {
-    flash: function flash(data) {
-      this.body = data.message, this.level = data.level, this.show = true, this.hide();
-    },
-    hide: function hide() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        _this2.show = false;
-      }, 3000);
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\Laravel_VueJS\\IT-Forum\\resources\\js\\components\\Flash.vue: Unexpected token (33:12)\n\n  31 |                 this.body = data.message,\n  32 |                 this.level = data.level,\n> 33 |             }\n     |             ^\n  34 |             this.show = true,\n  35 |             this.hide();\n  36 |         },\n    at Parser.raise (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:6930:17)\n    at Parser.unexpected (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8323:16)\n    at Parser.parseExprAtom (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9582:20)\n    at Parser.parseExprSubscripts (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9165:23)\n    at Parser.parseMaybeUnary (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9145:21)\n    at Parser.parseExprOps (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9011:23)\n    at Parser.parseMaybeConditional (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8984:23)\n    at Parser.parseMaybeAssign (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8930:21)\n    at Parser.parseExpression (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8887:36)\n    at Parser.parseStatementContent (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10740:23)\n    at Parser.parseStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10611:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11187:25)\n    at Parser.parseBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11174:10)\n    at Parser.parseBlock (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11158:10)\n    at Parser.parseStatementContent (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10687:21)\n    at Parser.parseStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10611:17)\n    at Parser.parseIfStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10965:28)\n    at Parser.parseStatementContent (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10656:21)\n    at Parser.parseStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10611:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11187:25)\n    at Parser.parseBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11174:10)\n    at Parser.parseBlock (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11158:10)\n    at Parser.parseFunctionBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10177:24)\n    at Parser.parseFunctionBodyAndFinish (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10147:10)\n    at Parser.parseMethod (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10101:10)\n    at Parser.parseObjectMethod (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10017:19)\n    at Parser.parseObjPropValue (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10059:23)\n    at Parser.parseObjectMember (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9983:10)\n    at Parser.parseObj (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9903:25)\n    at Parser.parseExprAtom (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9525:28)\n    at Parser.parseExprSubscripts (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9165:23)\n    at Parser.parseMaybeUnary (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9145:21)\n    at Parser.parseExprOps (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9011:23)\n    at Parser.parseMaybeConditional (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8984:23)\n    at Parser.parseMaybeAssign (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8930:21)\n    at Parser.parseObjectProperty (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10034:101)");
 
 /***/ }),
 
@@ -70636,14 +70593,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./resources/js/components/Flash.vue ***!
   \*******************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Flash_vue_vue_type_template_id_e4161ed6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Flash.vue?vue&type=template&id=e4161ed6&scoped=true& */ "./resources/js/components/Flash.vue?vue&type=template&id=e4161ed6&scoped=true&");
 /* harmony import */ var _Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Flash.vue?vue&type=script&lang=js& */ "./resources/js/components/Flash.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Flash_vue_vue_type_style_index_0_id_e4161ed6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Flash.vue?vue&type=style&index=0&id=e4161ed6&scoped=true&lang=css& */ "./resources/js/components/Flash.vue?vue&type=style&index=0&id=e4161ed6&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _Flash_vue_vue_type_style_index_0_id_e4161ed6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Flash.vue?vue&type=style&index=0&id=e4161ed6&scoped=true&lang=css& */ "./resources/js/components/Flash.vue?vue&type=style&index=0&id=e4161ed6&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -70675,13 +70633,15 @@ component.options.__file = "resources/js/components/Flash.vue"
 /*!********************************************************************!*\
   !*** ./resources/js/components/Flash.vue?vue&type=script&lang=js& ***!
   \********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Flash.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Flash.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Flash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -71299,8 +71259,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Laravel projekti\IT-Forum\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Laravel projekti\IT-Forum\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Laravel_VueJS\IT-Forum\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Laravel_VueJS\IT-Forum\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
