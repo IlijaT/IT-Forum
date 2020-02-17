@@ -27,12 +27,13 @@ Route::post('/threads', 'ThreadsController@store')->name('threads.store')->middl
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth')->name('threads.subscribe');
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth')->name('threads.delete');
 
+Route::post('/locked-threads/{thread}', 'LockedThreadsController@store')->name('locked-threads.store')->middleware('admin');
 
 Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
 Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index');
 
 Route::patch('/replies/{reply}', 'RepliesController@update');
-Route::delete('/replies/{reply}', 'RepliesController@destroy');
+Route::delete('/replies/{reply}', 'RepliesController@destroy')->name('replies.destroy');
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 

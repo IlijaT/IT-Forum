@@ -3142,7 +3142,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     classes: function classes() {
-      return ['btn', this.active ? 'btn-success' : 'btn-info'];
+      return [this.active ? 'btn btn-secondary' : 'btn btn-danger'];
     },
     endpoint: function endpoint() {
       return '/replies/' + this.reply.id + '/favorites';
@@ -3173,8 +3173,56 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Flash.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************/
+<<<<<<< HEAD
 /*! no static exports found */
 /***/ (function(module, exports) {
+=======
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['message'],
+  data: function data() {
+    return {
+      body: this.message,
+      level: 'success',
+      show: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    if (this.message) {
+      this.flash();
+    }
+
+    window.events.$on('flash', function (data) {
+      return _this.flash(data);
+    });
+  },
+  methods: {
+    flash: function flash(data) {
+      if (data) {
+        this.body = data.message;
+        this.level = data.level;
+      }
+
+      this.show = true, this.hide();
+    },
+    hide: function hide() {
+      var _this2 = this;
+>>>>>>> 6971fcdd8f66d86317a47e4c544f902cdcfeff54
 
 throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: D:\\Laravel_VueJS\\IT-Forum\\resources\\js\\components\\Flash.vue: Unexpected token (33:12)\n\n  31 |                 this.body = data.message,\n  32 |                 this.level = data.level,\n> 33 |             }\n     |             ^\n  34 |             this.show = true,\n  35 |             this.hide();\n  36 |         },\n    at Parser.raise (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:6930:17)\n    at Parser.unexpected (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8323:16)\n    at Parser.parseExprAtom (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9582:20)\n    at Parser.parseExprSubscripts (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9165:23)\n    at Parser.parseMaybeUnary (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9145:21)\n    at Parser.parseExprOps (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9011:23)\n    at Parser.parseMaybeConditional (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8984:23)\n    at Parser.parseMaybeAssign (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8930:21)\n    at Parser.parseExpression (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8887:36)\n    at Parser.parseStatementContent (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10740:23)\n    at Parser.parseStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10611:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11187:25)\n    at Parser.parseBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11174:10)\n    at Parser.parseBlock (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11158:10)\n    at Parser.parseStatementContent (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10687:21)\n    at Parser.parseStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10611:17)\n    at Parser.parseIfStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10965:28)\n    at Parser.parseStatementContent (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10656:21)\n    at Parser.parseStatement (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10611:17)\n    at Parser.parseBlockOrModuleBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11187:25)\n    at Parser.parseBlockBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11174:10)\n    at Parser.parseBlock (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:11158:10)\n    at Parser.parseFunctionBody (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10177:24)\n    at Parser.parseFunctionBodyAndFinish (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10147:10)\n    at Parser.parseMethod (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10101:10)\n    at Parser.parseObjectMethod (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10017:19)\n    at Parser.parseObjPropValue (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10059:23)\n    at Parser.parseObjectMember (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9983:10)\n    at Parser.parseObj (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9903:25)\n    at Parser.parseExprAtom (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9525:28)\n    at Parser.parseExprSubscripts (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9165:23)\n    at Parser.parseMaybeUnary (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9145:21)\n    at Parser.parseExprOps (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:9011:23)\n    at Parser.parseMaybeConditional (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8984:23)\n    at Parser.parseMaybeAssign (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:8930:21)\n    at Parser.parseObjectProperty (D:\\Laravel_VueJS\\IT-Forum\\node_modules\\@babel\\parser\\lib\\index.js:10034:101)");
 
@@ -3254,11 +3302,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       body: ''
     };
-  },
-  computed: {
-    signedIn: function signedIn() {
-      return window.App.signedIn;
-    }
   },
   mounted: function mounted() {
     $('#body').atwho({
@@ -3477,57 +3520,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data'],
+  props: ['reply'],
   components: {
     favorite: _Favorite_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      id: this.data.id,
       editing: false,
-      body: this.data.body
+      id: this.reply.id,
+      body: this.reply.body,
+      isBest: this.reply.isBest
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    window.events.$on('best-reply-selected', function (id) {
+      _this.isBest = id == _this.id;
+    });
   },
   methods: {
     update: function update() {
-      var _this = this;
+      var _this2 = this;
 
-      axios.patch('/replies/' + this.data.id, {
+      axios.patch('/replies/' + this.reply.id, {
         body: this.body
       }).then(function () {
-        _this.editing = false;
+        _this2.editing = false;
         flash('Updated');
       })["catch"](function (error) {
         return flash(error.response.data, 'danger');
       });
     },
     destroy: function destroy() {
-      var _this2 = this;
+      var _this3 = this;
 
-      axios["delete"]('/replies/' + this.data.id).then(function () {
-        _this2.$emit('deleted', _this2.data.id); // $(this.$el).fadeOut(300, () => {
-        //   flash('Your reply has been deleted!');
-        // })
-
+      axios["delete"]('/replies/' + this.reply.id).then(function () {
+        _this3.$emit('deleted', _this3.reply.id);
       });
+    },
+    markBestReply: function markBestReply() {
+      axios.post('/replies/' + this.reply.id + '/best');
+      window.events.$emit('best-reply-selected', this.reply.id);
     }
   },
   computed: {
     ago: function ago() {
-      return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.data.created_at).fromNow() + '...';
-    },
-    signedIn: function signedIn() {
-      return window.App.signedIn;
-    },
-    canUpdate: function canUpdate() {
-      var _this3 = this;
-
-      return this.autorize(function (user) {
-        return _this3.data.user_id == window.App.user.id;
-      }); //return this.data.user_id == window.App.user.id;
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(this.reply.created_at).fromNow() + '...';
     }
   }
 });
@@ -57968,7 +58012,7 @@ var render = function() {
           { key: reply.id },
           [
             _c("reply-component", {
-              attrs: { data: reply },
+              attrs: { reply: reply },
               on: {
                 deleted: function($event) {
                   return _vm.remove(index)
@@ -58016,22 +58060,26 @@ var render = function() {
     "div",
     { staticClass: "card mb-2", attrs: { id: "reply-" + _vm.id } },
     [
-      _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "d-flex align-items-center" }, [
-          _c("h5", { staticClass: "flex-fill" }, [
-            _c("a", {
-              attrs: { href: "/profiles/" + _vm.data.owner.name },
-              domProps: { textContent: _vm._s(_vm.data.owner.name) }
-            }),
+      _c(
+        "div",
+        { staticClass: "card-header", class: _vm.isBest ? "bg-success" : "" },
+        [
+          _c("div", { staticClass: "d-flex align-items-center" }, [
+            _c("h5", { staticClass: "flex-fill" }, [
+              _c("a", {
+                attrs: { href: "/profiles/" + _vm.reply.owner.name },
+                domProps: { textContent: _vm._s(_vm.reply.owner.name) }
+              }),
+              _vm._v(" "),
+              _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
+            ]),
             _vm._v(" "),
-            _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
-          ]),
-          _vm._v(" "),
-          _vm.signedIn
-            ? _c("div", [_c("favorite", { attrs: { reply: _vm.data } })], 1)
-            : _vm._e()
-        ])
-      ]),
+            _vm.signedIn
+              ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
+              : _vm._e()
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _vm.editing
@@ -58098,30 +58146,47 @@ var render = function() {
           : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } })
       ]),
       _vm._v(" "),
-      _vm.canUpdate
+      _vm.authorize("owns", _vm.reply) ||
+      _vm.authorize("owns", _vm.reply.thread)
         ? _c("div", { staticClass: "card-footer d-flex" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default btn-secondary mr-1",
-                on: {
-                  click: function($event) {
-                    _vm.editing = true
-                  }
-                }
-              },
-              [_vm._v("Edit")]
-            ),
+            _vm.authorize("owns", _vm.reply)
+              ? _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default btn-secondary mr-1",
+                      on: {
+                        click: function($event) {
+                          _vm.editing = true
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-xs",
+                      attrs: { type: "submit" },
+                      on: { click: _vm.destroy }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger btn-xs",
-                attrs: { type: "submit" },
-                on: { click: _vm.destroy }
-              },
-              [_vm._v("Delete")]
-            )
+            _vm.authorize("owns", _vm.reply.thread)
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary btn-xs ml-auto",
+                    attrs: { type: "submit" },
+                    on: { click: _vm.markBestReply }
+                  },
+                  [_vm._v("Best reply?")]
+                )
+              : _vm._e()
           ])
         : _vm._e()
     ]
@@ -70377,11 +70442,23 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
-Vue.prototype.autorize = function (handler) {
-  var user = window.App.user;
-  return user ? handler(window.App.user) : false;
+var authorizations = __webpack_require__(/*! ./authorizations */ "./resources/js/authorizations.js");
+
+Vue.prototype.authorize = function () {
+  if (!window.App.signedIn) return false;
+
+  for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
+    params[_key] = arguments[_key];
+  }
+
+  if (typeof params[0] === 'string') {
+    return authorizations[params[0]](params[1]);
+  }
+
+  return params[0](window.App.user);
 };
 
+Vue.prototype.signedIn = window.App.signedIn;
 window.events = new Vue();
 
 window.flash = function (message) {
@@ -70416,6 +70493,23 @@ Vue.component('avatar-form', __webpack_require__(/*! ./components/AvatarForm.vue
 var app = new Vue({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/authorizations.js":
+/*!****************************************!*\
+  !*** ./resources/js/authorizations.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var user = window.App.user;
+module.exports = {
+  owns: function owns(model) {
+    var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'user_id';
+    return model[prop] === user.id;
+  }
+};
 
 /***/ }),
 
