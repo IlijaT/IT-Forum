@@ -1,11 +1,13 @@
 <template>
   <div>
-    <button :class="classes" @click="subscribe">Subscribe</button>
+    <button :class="classes" @click="subscribe">Subscribe 2 </button>
   </div>
 </template>
 
 <script>
   export default {
+
+     
     props: ['active'],
 
     data() {
