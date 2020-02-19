@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button :class="classes" @click="subscribe">Subscribe 2 </button>
+    <button :class="classes" @click="subscribe">Subscribe</button>
   </div>
 </template>
 

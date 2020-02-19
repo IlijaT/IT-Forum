@@ -3687,12 +3687,18 @@ __webpack_require__.r(__webpack_exports__);
     replies: _components_Replies_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     SubscribeButton: _components_SubscribeButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['dataRepliesCount', 'dataLocked'],
+  props: ['thread'],
   data: function data() {
     return {
-      repliesCount: this.dataRepliesCount,
-      locked: this.dataLocked
+      repliesCount: this.thread.replies_count,
+      locked: this.thread.locked
     };
+  },
+  methods: {
+    toggleLock: function toggleLock() {
+      axios[this.locked ? 'delete' : 'post']('/locked-threads/' + this.thread.slug);
+      this.locked = !this.locked;
+    }
   }
 });
 
@@ -58227,7 +58233,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
-      _vm._v("Subscribe 2 ")
+      _vm._v("Subscribe")
     ])
   ])
 }
