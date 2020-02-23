@@ -21,6 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/threads', 'ThreadsController@index')->name('threads.index');
 Route::get('/threads/create', 'ThreadsController@create')->name('threads.create');
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show')->name('threads.show');
+Route::patch('/threads/{channel}/{thread}', 'ThreadsController@update')->name('threads.update');
+
+
 Route::delete('/threads/{channel}/{thread}', 'ThreadsController@destroy')->name('threads.delete');
 Route::get('/threads/{channel}', 'ThreadsController@index');
 Route::post('/threads', 'ThreadsController@store')->name('threads.store')->middleware('verified');
