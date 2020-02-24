@@ -12,39 +12,14 @@
       <div class="row mb-2">
 
           {{-- Left Side --}}
-          <div class="col-md-8">
-              <div class="card mb-2">
-                <div class="card-header">
-                  <div class="d-flex align-items-center">
-                    <div  class="flex-fill">
-                        <h5 class="flex-fill">
-                          <img src="{{ asset( $thread->creator->avatar_path)  }}" alt="avatar" width="25" height="25" class="mr-2">
-                          <a href="{{ route('profile', [$thread->creator->name]) }}"> {{ $thread->creator->name }}</a> posted:
-                          {{$thread->title}}
-                        </h5>
-                    </div>
+          <div class="col-md-8" v-cloak>
 
-                    @can('update',$thread)
-                      <form action="{{$thread->path()}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete Thread</button>
+            @include('threads._question')
 
-                      </form>
-                    @endcan
-                  </div>
-                
-                </div>
-
-                  <div class="card-body">
-                    {{ $thread->body }}
-                  </div>
-              </div>
-
-              <replies 
-                  @removed="repliesCount--"
-                  @added="repliesCount++">
-              </replies>
+            <replies 
+                @removed="repliesCount--"
+                @added="repliesCount++">
+            </replies>
 
           </div>
 
