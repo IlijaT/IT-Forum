@@ -13,8 +13,32 @@
         </div>
 
         <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-fill">
+                            <h4>
+                                Search Threads
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card-body">
+                    <form action="/threads/search" method="GET">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="q" placeholder="Search something...">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
             @if (count($trending))
-            <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <div class="flex-fill">
